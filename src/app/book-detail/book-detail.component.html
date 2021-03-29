@@ -1,0 +1,21 @@
+<p>List of Books</p>
+<div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Published Date</th>
+        </tr>
+        <tr *ngFor="let b of books">
+            <td>{{b.bookId}}</td>
+            <td>{{b.title}}</td>
+            <td>{{b.genre}}</td>
+            <td>{{b.description}}</td>
+            <td>{{b.price}}</td>
+            <td>{{b.publishDate}}</td>
+        </tr>
+    </table>
+</div>
