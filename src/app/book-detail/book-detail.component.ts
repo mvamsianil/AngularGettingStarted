@@ -16,7 +16,10 @@ export class BookDetailComponent implements OnInit {
   ngOnInit(): void {
     this.bookService.getMyBooks().subscribe((b) => {
       this.books = b;
-    });
+    },
+    error => {
+      alert(error.message);
+    }
+    );
   } 
-
 }

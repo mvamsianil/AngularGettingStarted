@@ -29,13 +29,18 @@ export class LoginComponent {
     this.model.password = this.checkoutForm.get("password")?.value;
     this._loginService.authenticate(this.model).subscribe(data => {
       this.loggedInUser = data;
-      localStorage.setItem("token", this.loggedInUser.token);
-      localStorage.setItem("user", this.loggedInUser.username);
-      localStorage.setItem("userid", this.loggedInUser.id.toString());
-      localStorage.setItem("username", data.firstname + ' ' + data.lastname);
+      this.AddAuthTokens(this.loggedInUser);
       this.router.navigate(['/']);
       return false;
-    });
+    }, error => { 
+      alert(error.error.message)});
+  }
 
+  private AddAuthTokens(_loggedInUser: LoggedInUser): void {
+    localStorage.setItem("TOKEN", _loggedInUser.token);
+    localStorage.setItem("USER", _loggedInUser.username);
+    localStorage.setItem("USERID", _loggedInUser.id.toString());
+    localStorage.setItem("USERNAME", _loggedInUser.firstname + ' ' + _loggedInUser.lastname);
+      
   }
 }

@@ -14,17 +14,21 @@ import { Login, LoggedInUser } from './entity/login';
     .set('limitToFirst', "1");
 
     private getLoginUrl: string = 'https://localhost:44397/coreapi/User/authenticate';
-    private options = {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),    
-        responseType: 'json'
-      };
+    private getValidateTokenUrl: string = 'https://localhost:44397/coreapi/User/validatetoken';
 
     user: Observable<LoggedInUser> | undefined;
+    validtoken: boolean = false;
     constructor (private _httpClient: HttpClient) { }
 
     authenticate(login: Login) : Observable<LoggedInUser> {
         return this._httpClient.post<LoggedInUser>(this.getLoginUrl, login).pipe(
             map((data: any) => this.user = data)
         );
+    }
+
+    validatetoken(token:string) : Observable<boolean> {
+      return this._httpClient.get<boolean>(this.getValidateTokenUrl + "?token=" + token).pipe(
+        map((data:boolean) => this.validtoken = data)
+      );
     }
   }
