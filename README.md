@@ -1,4 +1,5 @@
-# MyFirstApp
+# My First Angular Project 
+Getting started with all the basic implementations of login, authentication, JWT token based authentication, http call authorization, etc.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
 
