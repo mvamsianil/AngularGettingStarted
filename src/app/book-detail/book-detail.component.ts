@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../book.service';
-import { Book } from '../entity/book';
-import { Observable } from 'rxjs';
+import { Book } from '../entity';
 import { Router } from '@angular/router';
+import { AlertService } from '../alert.service';
 
 @Component({
   selector: 'app-book-detail',
@@ -11,15 +11,18 @@ import { Router } from '@angular/router';
 })
 export class BookDetailComponent implements OnInit {
   books: Book[] = [];
-  constructor(private bookService: BookService, private router: Router,) { }
+  constructor(private _bookService: BookService, private _router: Router,private _alertService: AlertService) { }
 
   ngOnInit(): void {
-    this.bookService.getMyBooks().subscribe((b) => {
-      this.books = b;
-    },
-    error => {
-      alert(error.message);
-    }
+    this._alertService.clear();
+
+    this._bookService.getMyBooks().subscribe(b => {
+        this._alertService.success("Books service success", {keepAfterRouteChange: true });
+        this.books = b;
+      },
+      error => {
+        this._alertService.error("Books service error");
+      }
     );
   } 
 }

@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'https://localhost:44397/coreapi/',
+  //apiUrl: 'https://localhost:5001/coreapi/',
+  getAllUsersUrl : 'User/getallusers',
+  getLoginUrl: 'User/authenticate',
+  getValidateTokenUrl: 'User/validatetoken',
+  getBooksListUrl: 'Book/ListOfBooks'
 };
 
 /*
